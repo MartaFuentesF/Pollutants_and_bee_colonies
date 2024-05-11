@@ -10,6 +10,10 @@ import pandas as pd
 
 
 
+directory = '../Project_4/Data_Bees/processed_dfs/'
+os.makedirs(directory, exist_ok = True)
+
+
 
 
 
@@ -35,10 +39,49 @@ def process_data(file): # year data is in the format 2007-08
 # saving the output df as a variable
 colony_loss_df = process_data('BIP Bee Colony Loss Clean')
 
-# Saving as .csv in DataFolder, creating directory using os library
-directory = '../Project_4/Data_Bees/processed_dfs/'
-os.makedirs(directory, exist_ok = True)
+
+colony_loss_df.head()
+
+
+# saving to .csv
 colony_loss_df.to_csv(directory + 'bip_colony_loss_processed')
+
+
+
+
+
+df_2 = pd.read_csv('./Data_Bees/Bee Colony Census Data by County.csv')
+df_2.head(30)
+
+
+df_2.describe()
+
+
+df_2.info()
+
+
+df_2.isna().sum()
+
+
+
+
+
+# some entries in the Value columns are not numbers
+df_2['Value'].value_counts()
+
+
+
+
+
+# Integers to Objects
+cols_int_to_object = ['State ANSI', 'Ag District Code', 'County ANSI']
+
+for col in cols_int_to_object:
+    df_2[col] = df_2[col].astype(object)
+
+# Objects to Integers
+
+df_2['Value'] = df_2['Value'].astype(int)
 
 
 
