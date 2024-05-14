@@ -156,7 +156,7 @@ df_3.head()
 
 
 df_3 = pd.get_dummies(df_3, columns=['Data Item'], dtype = int)
-one_hot_encoded_df.head()
+df_3.head()
 
 
 # saving to .csv
